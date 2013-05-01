@@ -1,44 +1,29 @@
 package com.infochimps.elasticsearch;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.Random;
-import java.net.URI;
-
+import com.infochimps.elasticsearch.hadoop.util.HadoopUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.apache.hadoop.conf.Configurable;
-import org.apache.hadoop.io.*;
-import org.apache.hadoop.mapreduce.TaskAttemptContext;
-import org.apache.hadoop.mapreduce.JobContext;
-import org.apache.hadoop.mapreduce.RecordWriter;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.mapreduce.Counter;
-import org.apache.hadoop.mapreduce.OutputFormat;
-import org.apache.hadoop.mapreduce.OutputCommitter;
-import org.apache.hadoop.filecache.DistributedCache;
-
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+import org.elasticsearch.ExceptionsHelper;
+import org.elasticsearch.action.bulk.BulkRequestBuilder;
+import org.elasticsearch.action.bulk.BulkResponse;
+import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentFactory;
-import org.elasticsearch.node.Node;
-import org.elasticsearch.node.NodeBuilder;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.Requests;
-import org.elasticsearch.action.bulk.BulkRequestBuilder;
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.indices.IndexAlreadyExistsException;
-import org.elasticsearch.action.bulk.BulkResponse;
-import org.elasticsearch.ExceptionsHelper;
+import org.elasticsearch.node.Node;
+import org.elasticsearch.node.NodeBuilder;
 
-import com.infochimps.elasticsearch.hadoop.util.HadoopUtils;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
 
@@ -46,9 +31,9 @@ import com.infochimps.elasticsearch.hadoop.util.HadoopUtils;
    in a one-hop manner to the elastic search data nodes that will index them.
 
  */
-public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWritable> implements Configurable {
+public class ElasticSearchDeletionOutputFormat extends OutputFormat<NullWritable, MapWritable> implements Configurable {
 
-    static Log LOG = LogFactory.getLog(ElasticSearchOutputFormat.class);
+    static Log LOG = LogFactory.getLog(ElasticSearchDeletionOutputFormat.class);
     private Configuration conf = null;
 
     protected class ElasticSearchRecordWriter extends RecordWriter<NullWritable, MapWritable> {
@@ -195,7 +180,9 @@ public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWri
                     {
                        // no parent id setting
                   //     LOG.info("[write] record_id ==" + record_id);
-                       currentRequest.add(Requests.indexRequest(indexName).id(record_id).type(objType).create(false).source(builder));
+
+
+                       currentRequest.add(Requests.deleteRequest(indexName).id("c_"+record_id).type(objType));
                     }
                     else
                     {  // there is parent setting
@@ -203,9 +190,9 @@ public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWri
                        String parent_id = fields.get(mapKey).toString();
                     //  LOG.info("[write] record_id ==" + record_id);
                     //  LOG.info("[write] parent_id ==" + parent_id);
-                      IndexRequest ir = Requests.indexRequest(indexName).id("c_"+record_id).parent(parent_id).type(objType).create(false).source(builder);
+                      DeleteRequest dr = Requests.deleteRequest(indexName).id("c_" + record_id).type(objType);
                     //  LOG.info("[write] json body == \n" + ir.toString() + "\n its parent id is ==" + ir.parent());
-                      currentRequest.add(ir);
+                      currentRequest.add(dr);
 
                     }
                 } catch (Exception e) {

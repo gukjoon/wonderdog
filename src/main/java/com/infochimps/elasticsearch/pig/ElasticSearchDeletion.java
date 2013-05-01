@@ -1,44 +1,34 @@
 package com.infochimps.elasticsearch.pig;
 
-import java.io.IOException;
-import java.lang.InterruptedException;
-import java.util.Properties;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-
+import com.infochimps.elasticsearch.ElasticSearchDeletionOutputFormat;
+import com.infochimps.elasticsearch.ElasticSearchInputFormat;
+import com.infochimps.elasticsearch.ElasticSearchOutputFormat;
+import com.infochimps.elasticsearch.hadoop.util.HadoopUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.RecordReader;
-import org.apache.hadoop.mapreduce.RecordWriter;
-import org.apache.hadoop.mapreduce.InputFormat;
-import org.apache.hadoop.mapreduce.OutputFormat;
 import org.apache.hadoop.io.*;
-
+import org.apache.hadoop.mapreduce.*;
 import org.apache.pig.LoadFunc;
-import org.apache.pig.StoreFuncInterface;
 import org.apache.pig.ResourceSchema;
-import org.apache.pig.impl.util.UDFContext;
+import org.apache.pig.StoreFuncInterface;
 import org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigSplit;
 import org.apache.pig.data.DataByteArray;
 import org.apache.pig.data.Tuple;
 import org.apache.pig.data.TupleFactory;
+import org.apache.pig.impl.util.UDFContext;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
-import com.infochimps.elasticsearch.ElasticSearchOutputFormat;
-import com.infochimps.elasticsearch.ElasticSearchInputFormat;
-import com.infochimps.elasticsearch.hadoop.util.HadoopUtils;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
-public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface {
+public class ElasticSearchDeletion extends LoadFunc implements StoreFuncInterface {
 
     private String contextSignature = null;
     private RecordReader reader;
@@ -51,14 +41,13 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
     private static final String ES_INDEX_NAME = "elasticsearch.index.name";
     private static final String ES_BULK_SIZE = "elasticsearch.bulk.size";
     private static final String ES_ID_FIELD_NAME = "elasticsearch.id.field.name";
-    private static final String ES_PARENT_FIELD_NAME = "elasticsearch.parent.field.name";
     private static final String ES_OBJECT_TYPE = "elasticsearch.object.type";
     private static final String ES_IS_JSON = "elasticsearch.is_json";
     private static final String PIG_ES_FIELD_NAMES = "elasticsearch.pig.field.names";
     private static final String ES_REQUEST_SIZE = "elasticsearch.request.size";
     private static final String ES_NUM_SPLITS = "elasticsearch.num.input.splits";
     private static final String ES_QUERY_STRING = "elasticsearch.query.string";
-    
+
     private static final String COMMA = ",";
     private static final String LOCAL_SCHEME = "file://";
     private static final String DEFAULT_BULK = "1000";
@@ -68,16 +57,16 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
     private static final String ES_PLUGINS_HDFS_PATH = "/tmp/elasticsearch/plugins";
     private static final String ES_CONFIG = "es.config";
     private static final String ES_PLUGINS = "es.path.plugins";
-    
-    public ElasticSearchStorage() {
+
+    public ElasticSearchDeletion() {
         this(DEFAULT_ES_CONFIG, DEFAULT_ES_PLUGINS);
     }
 
-    public ElasticSearchStorage(String esConfig) {
+    public ElasticSearchDeletion(String esConfig) {
         this(esConfig, DEFAULT_ES_PLUGINS);
     }
 
-    public ElasticSearchStorage(String esConfig, String esPlugins) {
+    public ElasticSearchDeletion(String esConfig, String esPlugins) {
         this.esConfig  = esConfig;
         this.esPlugins = esPlugins;
     }
@@ -131,7 +120,7 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
 
     @Override
     public OutputFormat getOutputFormat() throws IOException {
-        return new ElasticSearchOutputFormat();
+        return new ElasticSearchDeletionOutputFormat();
     }
 
     /**
@@ -244,10 +233,6 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
                 if (idFieldName == null) idFieldName = "-1";
                 job.getConfiguration().set(ES_ID_FIELD_NAME, idFieldName);
 
-                // Set the parent filed name in the hadoop configuration [this is optional]
-                String parentFieldName = query.get("parent");
-                if(parentFieldName == null) parentFieldName = "-1";
-                job.getConfiguration().set(ES_PARENT_FIELD_NAME, parentFieldName);
 
                 String queryString = query.get("q");
                 if (queryString==null) queryString = "*";
