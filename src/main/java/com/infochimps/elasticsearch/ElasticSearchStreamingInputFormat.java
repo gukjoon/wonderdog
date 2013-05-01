@@ -185,7 +185,7 @@ public class ElasticSearchStreamingInputFormat<K, V> implements InputFormat<K, V
 	    request.setQuery(queryJSON);
 	}
         SearchResponse response = request.execute().actionGet();
-        this.numHits = response.hits().totalHits();
+        this.numHits = response.getHits().totalHits();
 
 	LOG.info("Ran query: "+String.valueOf(numHits)+" hits");
     }

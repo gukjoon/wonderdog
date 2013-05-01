@@ -64,7 +64,7 @@ class ElasticSearchStreamingRecordReader<K, V> implements RecordReader<K, V> {
 	    LOG.info("Running initial scroll with timeout "+scrollTimeout);
 	    SearchRequestBuilder request  = split.initialScrollRequest(client, scroll, requestSize);
 	    SearchResponse       response = request.execute().actionGet();
-	    this.scrollId = response.scrollId();
+	    this.scrollId = response.getScrollId();
 	    LOG.info("Got scroll ID "+scrollId);
 	    // Do we need to call fetchNextHits() again here?  Or does
 	    // the initial request also itself contain the first set
@@ -75,9 +75,9 @@ class ElasticSearchStreamingRecordReader<K, V> implements RecordReader<K, V> {
 	    // LOG.info("Running query for scroll ID "+scrollId+" with timeout "+scrollTimeout);
 	    SearchScrollRequestBuilder request  = split.scrollRequest(client, scroll, scrollId);
 	    SearchResponse             response = request.execute().actionGet();
-	    this.scrollId = response.scrollId();
+	    this.scrollId = response.getScrollId();
 	    // LOG.info("Got scroll ID "+scrollId);
-	    this.hitsItr = response.hits().iterator();
+	    this.hitsItr = response.getHits().iterator();
 	}
     }
 
