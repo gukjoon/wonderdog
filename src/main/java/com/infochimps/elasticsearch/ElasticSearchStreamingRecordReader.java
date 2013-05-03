@@ -81,7 +81,7 @@ class ElasticSearchStreamingRecordReader<K, V> implements RecordReader<K, V> {
 	}
     }
 
-    @Override
+
 	public boolean next(K key, V value) throws IOException {
 	if (shouldReadAnotherRecord()) {
 	    // We should read more records because we haven't read as
@@ -129,27 +129,27 @@ class ElasticSearchStreamingRecordReader<K, V> implements RecordReader<K, V> {
 	}
     }
     
-    @Override
+
 	public K createKey() {
 	return (K) new Text();
     }
 
-    @Override
+
 	public V createValue() {
 	return (V) new Text();
     }
 	
-    @Override
+
 	public long getPos() throws IOException {
 	return recordsRead;
     }
         
-    @Override
+
 	public float getProgress() throws IOException {
 	return ((float) recordsRead) / ((float) split.getSize());
     }
 
-    @Override
+
 	public void close() throws IOException {
 	stopEmbeddedClient();
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -9,12 +9,20 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.elasticsearch:elasticsearch:0.19.8" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:3.6.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-analyzers:3.6.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:3.6.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-memory:3.6.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-highlighter:3.6.0" level="project" />
+    <orderEntry type="library" name="Maven: org.elasticsearch:elasticsearch:0.90.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-analyzers-common:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-codecs:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-memory:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-highlighter:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queryparser:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-sandbox:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-suggest:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-join:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-grouping:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-spatial:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.spatial4j:spatial4j:0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-core:2.0.0-mr1-cdh4.2.0" level="project" />
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
     <orderEntry type="library" name="Maven: xmlenc:xmlenc:0.52" level="project" />
