@@ -119,7 +119,6 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
         elasticSearchSetup(location, job);
     }
 
-    @Override
     public String relToAbsPathForStoreLocation(String location, Path curDir) throws IOException {
         return location;
     }
@@ -129,7 +128,6 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
         return location;
     }
 
-    @Override
     public OutputFormat getOutputFormat() throws IOException {
         return new ElasticSearchOutputFormat();
     }
@@ -137,7 +135,6 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
     /**
        Here we set the field names for a given tuple even if we 
      */
-    @Override
     public void checkSchema(ResourceSchema s) throws IOException {
         UDFContext context  = UDFContext.getUDFContext();
         Properties property = context.getUDFProperties(ResourceSchema.class);
@@ -150,7 +147,6 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
     }
 
     // Suppressing unchecked warnings for RecordWriter, which is not parameterized by StoreFuncInterface
-    @Override
     public void prepareToWrite(@SuppressWarnings("rawtypes") RecordWriter writer) throws IOException {
         this.writer = writer;
     }
@@ -159,9 +155,9 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
        Here we handle both the delimited record case and the json case.
      */
     @SuppressWarnings("unchecked")
-    @Override
     public void putNext(Tuple t) throws IOException {
 
+     //   System.out.println("print out the tuple : " + t.toString());
         UDFContext context  = UDFContext.getUDFContext();
         Properties property = context.getUDFProperties(ResourceSchema.class);
         MapWritable record  = new MapWritable();
@@ -201,7 +197,6 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
         }
     }
 
-    @Override
     public void setStoreFuncUDFContextSignature(String signature) {
         this.contextSignature = signature;        
     }
@@ -298,7 +293,6 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
        <b>WARNING</b> Note that, since this is called more than once, it is
        critical to ensure that we do not change or reset anything we've already set.
      */
-    @Override
     public void setStoreLocation(String location, Job job) throws IOException {
         elasticSearchSetup(location, job);
     }
@@ -354,8 +348,7 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
         }
         return NullWritable.get();
     }
-    
-    @Override
+
     public void cleanupOnFailure(String location, Job job) throws IOException {
     }
 

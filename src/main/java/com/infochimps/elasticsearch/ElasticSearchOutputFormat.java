@@ -203,7 +203,7 @@ public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWri
                        String parent_id = fields.get(mapKey).toString();
                     //  LOG.info("[write] record_id ==" + record_id);
                     //  LOG.info("[write] parent_id ==" + parent_id);
-                      IndexRequest ir = Requests.indexRequest(indexName).id("c_"+record_id).parent(parent_id).type(objType).create(false).source(builder);
+                      IndexRequest ir = Requests.indexRequest(indexName).id(record_id).parent(parent_id).type(objType).create(false).source(builder);
                     //  LOG.info("[write] json body == \n" + ir.toString() + "\n its parent id is ==" + ir.parent());
                       currentRequest.add(ir);
 

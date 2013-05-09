@@ -182,7 +182,7 @@ public class ElasticSearchDeletionOutputFormat extends OutputFormat<NullWritable
                   //     LOG.info("[write] record_id ==" + record_id);
 
 
-                       currentRequest.add(Requests.deleteRequest(indexName).id("c_"+record_id).type(objType));
+                       currentRequest.add(Requests.deleteRequest(indexName).id(record_id).type(objType));
                     }
                     else
                     {  // there is parent setting
@@ -190,7 +190,7 @@ public class ElasticSearchDeletionOutputFormat extends OutputFormat<NullWritable
                        String parent_id = fields.get(mapKey).toString();
                     //  LOG.info("[write] record_id ==" + record_id);
                     //  LOG.info("[write] parent_id ==" + parent_id);
-                      DeleteRequest dr = Requests.deleteRequest(indexName).id("c_" + record_id).type(objType);
+                      DeleteRequest dr = Requests.deleteRequest(indexName).id(record_id).type(objType);
                     //  LOG.info("[write] json body == \n" + ir.toString() + "\n its parent id is ==" + ir.parent());
                       currentRequest.add(dr);
 
