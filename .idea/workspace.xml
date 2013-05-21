@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6abad03e-661e-4b7a-93a5-b4ea0f899d65" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/ElasticSearchDeletionOutputFormat.java" afterPath="$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/ElasticSearchDeletionOutputFormat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/ElasticSearchOutputFormat.java" afterPath="$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/ElasticSearchOutputFormat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchDeletion.java" afterPath="$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchDeletion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchStorage.java" afterPath="$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchStorage.java" />
-    </list>
+    <list default="true" id="6abad03e-661e-4b7a-93a5-b4ea0f899d65" name="Default" comment="" />
     <ignored path="wonderdog.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -105,9 +98,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchDeletion.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="285" column="30" selection-start="11867" selection-end="11867" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#5550#5580#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -115,7 +106,7 @@
       <file leaf-file-name="ElasticSearchDeletionOutputFormat.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/ElasticSearchDeletionOutputFormat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="168" column="68" selection-start="8695" selection-end="8695" vertical-scroll-proportion="-1.7045075">
+            <state line="168" column="68" selection-start="8695" selection-end="8695" vertical-scroll-proportion="0.02631579">
               <folding />
             </state>
           </provider>
@@ -133,10 +124,8 @@
       <file leaf-file-name="ElasticSearchStorage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="234" column="24" selection-start="9370" selection-end="9370" vertical-scroll-proportion="52.96154">
-              <folding>
-                <element signature="e#5890#5920#0" expanded="true" />
-              </folding>
+            <state line="234" column="24" selection-start="9370" selection-end="9370" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -225,10 +214,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1508" />
-    <option name="y" value="210" />
+    <option name="x" value="62" />
+    <option name="y" value="97" />
     <option name="width" value="1659" />
-    <option name="height" value="903" />
+    <option name="height" value="874" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -256,12 +245,16 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
+      <pane id="PackagesPane">
+        <subPane>
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wonderdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wonderdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -342,21 +335,30 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="OverrideImplement.combined" value="true" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="reference.settings.project.maven.importing" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -390,25 +392,6 @@
         <option name="SBT.BeforeRunTask" enabled="false" action="test:products" runInCurrentModule="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="SBT.BeforeRunTask" enabled="false" action="test:products" runInCurrentModule="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -434,6 +417,25 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+        <option name="SBT.BeforeRunTask" enabled="false" action="test:products" runInCurrentModule="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -522,8 +524,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1508" y="210" width="1659" height="903" extended-state="0" />
-    <editor active="true" />
+    <frame x="62" y="97" width="1659" height="874" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -531,14 +533,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12659846" sideWeight="0.99875855" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13147411" sideWeight="0.99875855" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12787089" sideWeight="0.8734015" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12911235" sideWeight="0.8685259" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22780882" sideWeight="0.8734015" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22780882" sideWeight="0.8685259" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -647,6 +649,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/ElasticSearchOutputFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="208" column="0" selection-start="10545" selection-end="10545" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/elasticsearch-example.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="72" column="50" selection-start="2624" selection-end="2630" vertical-scroll-proportion="0.0">
@@ -657,6 +666,27 @@
     <entry file="file://$PROJECT_DIR$/lib/wonderdog/hadoop_invocation_override.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="154" column="7" selection-start="5695" selection-end="5695" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchDeletion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="285" column="30" selection-start="11867" selection-end="11867" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="234" column="24" selection-start="9370" selection-end="9370" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -675,41 +705,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchDeletion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="30" selection-start="11867" selection-end="11867" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#5550#5580#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/pig/ElasticSearchStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="234" column="24" selection-start="9370" selection-end="9370" vertical-scroll-proportion="52.96154">
-          <folding>
-            <element signature="e#5890#5920#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/ElasticSearchOutputFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="208" column="0" selection-start="10545" selection-end="10545" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/infochimps/elasticsearch/ElasticSearchDeletionOutputFormat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="68" selection-start="8695" selection-end="8695" vertical-scroll-proportion="-1.7045075">
+        <state line="168" column="68" selection-start="8695" selection-end="8695" vertical-scroll-proportion="0.02631579">
           <folding />
         </state>
       </provider>
