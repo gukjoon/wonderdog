@@ -257,7 +257,11 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
                     Path hdfsConfigPath = new Path(ES_CONFIG_HDFS_PATH);
                     Path hdfsPluginsPath = new Path(ES_PLUGINS_HDFS_PATH);
                     
-                    HadoopUtils.uploadLocalFileIfChanged(new Path(LOCAL_SCHEME+esConfig), hdfsConfigPath, job.getConfiguration());
+              //      HadoopUtils.uploadLocalFileIfChanged(new Path(LOCAL_SCHEME+esConfig), hdfsConfigPath, job.getConfiguration());
+
+                  HadoopUtils.uploadLocalFile(new Path(LOCAL_SCHEME+esConfig), hdfsConfigPath, job.getConfiguration());
+                  System.out.println("local path of esConfig file: " + LOCAL_SCHEME+esConfig);
+
                     HadoopUtils.shipFileIfNotShipped(hdfsConfigPath, job.getConfiguration());
                 
                     HadoopUtils.uploadLocalFileIfChanged(new Path(LOCAL_SCHEME+esPlugins), hdfsPluginsPath, job.getConfiguration());

@@ -261,7 +261,16 @@ public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWri
               try {
                     long startTime        = System.currentTimeMillis();
                     if (loggable){ LOG.info("Sending [" + (currentRequest.numberOfActions()) + "]items"); }
-                    BulkResponse response = currentRequest.execute().actionGet();
+
+                    boolean isResponseFailure = true;
+
+                   // if the batch has some failure, we need re-index the batch
+                    while(isResponseFailure)
+                    {
+                      BulkResponse response = currentRequest.execute().actionGet();
+                      isResponseFailure = response.hasFailures();
+                    }
+
                     totalBulkTime.addAndGet(System.currentTimeMillis() - startTime);
                     if (loggable) {
                       LOG.info("Indexed ["    + (currentRequest.numberOfActions())                 + "]items " +
@@ -272,6 +281,7 @@ public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWri
                                "wall clock [" + ((System.currentTimeMillis() - runStartTime)/1000) + "]s)");
                       lastLogTime = System.currentTimeMillis();
                     }
+
                 } catch (Exception e) {
                     LOG.warn("Bulk request failed: " + e.getMessage());
                     throw new RuntimeException(e);

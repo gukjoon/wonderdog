@@ -54,6 +54,7 @@ public class HadoopUtils {
                 }
             }
         }
+        System.out.println("[HadoopUtils: the file is not in distributed cache] " + basename);
         return null;
     }
 
@@ -79,6 +80,7 @@ public class HadoopUtils {
         if (fetchFileFromCache(hdfsPath.getName(), conf) == null) {
             try {
                 DistributedCache.addCacheFile(hdfsPath.toUri(), conf);
+                System.out.println("[HadoopUtil add file to distributed cache] "+ hdfsPath.toString());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
