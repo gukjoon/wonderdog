@@ -249,6 +249,12 @@ public class ElasticSearchDeletionOutputFormat extends OutputFormat<NullWritable
                     long startTime        = System.currentTimeMillis();
                     if (loggable){ LOG.info("Sending [" + (currentRequest.numberOfActions()) + "]items"); }
                     BulkResponse response = currentRequest.execute().actionGet();
+
+                    while(response.hasFailures())
+                    {
+                      response = currentRequest.execute().actionGet();
+                    }
+
                     totalBulkTime.addAndGet(System.currentTimeMillis() - startTime);
                     if (loggable) {
                       LOG.info("Indexed ["    + (currentRequest.numberOfActions())                 + "]items " +

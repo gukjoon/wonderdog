@@ -71,12 +71,13 @@ public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWri
         private long       lastLogTime    = 0;
 
         // For hadoop configuration
-        private static final String ES_CONFIG_NAME = "elasticsearch.yml";
+        private String ES_CONFIG_NAME = "elasticsearch.yml";   // this is default value, we need to be able to dynamicly identify the name make wonderdog can be run by multiple users
         private static final String ES_PLUGINS_NAME = "plugins";
         private static final String ES_INDEX_NAME = "elasticsearch.index.name";
         private static final String ES_BULK_SIZE = "elasticsearch.bulk.size";
         private static final String ES_ID_FIELD_NAME = "elasticsearch.id.field.name";
         private static final String ES_PARENT_FIELD_NAME = "elasticsearch.parent.field.name";
+        private static final String ES_CONFIG_FILE_NAME = "elasticsearch.config.name";
         private static final String ES_ID_FIELD = "elasticsearch.id.field";
         private static final String ES_OBJECT_TYPE = "elasticsearch.object.type";
         private static final String ES_CONFIG = "es.config";
@@ -116,6 +117,7 @@ public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWri
             this.bulkSize = Integer.parseInt(conf.get(ES_BULK_SIZE));
             this.idFieldName = conf.get(ES_ID_FIELD_NAME);
             this.parentFieldName = conf.get(ES_PARENT_FIELD_NAME);
+            this.ES_CONFIG_NAME = conf.get(ES_CONFIG_FILE_NAME);
        //     LOG.info("[ElasticSearchRecordWriter] idFieldName == " + this.idFieldName);
        //     LOG.info("[ElasticSearchRecordWriter] parentFieldName == " + this.parentFieldName);
 
@@ -262,6 +264,13 @@ public class ElasticSearchOutputFormat extends OutputFormat<NullWritable, MapWri
                     long startTime        = System.currentTimeMillis();
                     if (loggable){ LOG.info("Sending [" + (currentRequest.numberOfActions()) + "]items"); }
                     BulkResponse response = currentRequest.execute().actionGet();
+
+                    // if there is failure in the batch process, we need to redo it
+                    while(response.hasFailures())
+                    {
+                      response = currentRequest.execute().actionGet();
+                    }
+
                     totalBulkTime.addAndGet(System.currentTimeMillis() - startTime);
                     if (loggable) {
                       LOG.info("Indexed ["    + (currentRequest.numberOfActions())                 + "]items " +

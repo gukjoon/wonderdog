@@ -58,14 +58,15 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
     private static final String ES_REQUEST_SIZE = "elasticsearch.request.size";
     private static final String ES_NUM_SPLITS = "elasticsearch.num.input.splits";
     private static final String ES_QUERY_STRING = "elasticsearch.query.string";
+    private static final String ES_CONFIG_NAME = "elasticsearch.config.name";
     
     private static final String COMMA = ",";
     private static final String LOCAL_SCHEME = "file://";
     private static final String DEFAULT_BULK = "1000";
     private static final String DEFAULT_ES_CONFIG = "/etc/elasticsearch/elasticsearch.yml";
     private static final String DEFAULT_ES_PLUGINS = "/usr/local/share/elasticsearch/plugins";
-    private static final String ES_CONFIG_HDFS_PATH = "/tmp/elasticsearch/elasticsearch.yml";
-    private static final String ES_PLUGINS_HDFS_PATH = "/tmp/elasticsearch/plugins";
+    private static final String ES_CONFIG_HDFS_FOLDER_PATH = "/tmp/elasticsearch/";
+    private static final String ES_PLUGINS_HDFS_PATH = "/tmp/elasticsearch/";
     private static final String ES_CONFIG = "es.config";
     private static final String ES_PLUGINS = "es.path.plugins";
     
@@ -244,6 +245,11 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
                 if(parentFieldName == null) parentFieldName = "-1";
                 job.getConfiguration().set(ES_PARENT_FIELD_NAME, parentFieldName);
 
+                // get the configure file name  [this is optinal. we suggested to have a unique name to avoid conflict with other running jobs]
+                String configFileName = query.get("configFile");
+                if(configFileName == null) configFileName = "elasticsearch.yml";
+                job.getConfiguration().set(ES_CONFIG_NAME, configFileName);
+
                 String queryString = query.get("q");
                 if (queryString==null) queryString = "*";
                 job.getConfiguration().set(ES_QUERY_STRING, queryString);
@@ -254,7 +260,7 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
 
                 // Adds the elasticsearch.yml file (esConfig) and the plugins directory (esPlugins) to the distributed cache
                 try {
-                    Path hdfsConfigPath = new Path(ES_CONFIG_HDFS_PATH);
+                    Path hdfsConfigPath = new Path(ES_CONFIG_HDFS_FOLDER_PATH+configFileName);
                     Path hdfsPluginsPath = new Path(ES_PLUGINS_HDFS_PATH);
                     
                     HadoopUtils.uploadLocalFileIfChanged(new Path(LOCAL_SCHEME+esConfig), hdfsConfigPath, job.getConfiguration());
