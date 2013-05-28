@@ -46,6 +46,10 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
     protected ObjectMapper mapper = new ObjectMapper();
     protected String esConfig;
     protected String esPlugins;
+    protected String uniqueConfigFileId;
+    protected String configFileName = "elasticsearch.yml";
+
+    private Log log = LogFactory.getLog(ElasticSearchStorage.class);
 
     // For hadoop configuration
     private static final String ES_INDEX_NAME = "elasticsearch.index.name";
@@ -63,24 +67,18 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
     private static final String COMMA = ",";
     private static final String LOCAL_SCHEME = "file://";
     private static final String DEFAULT_BULK = "1000";
-    private static final String DEFAULT_ES_CONFIG = "/etc/elasticsearch/elasticsearch.yml";
-    private static final String DEFAULT_ES_PLUGINS = "/usr/local/share/elasticsearch/plugins";
+  //  private static final String DEFAULT_ES_CONFIG = "/etc/elasticsearch/elasticsearch.yml";
+  //  private static final String DEFAULT_ES_PLUGINS = "/usr/local/share/elasticsearch/plugins";
     private static final String ES_CONFIG_HDFS_FOLDER_PATH = "/tmp/elasticsearch/";
     private static final String ES_PLUGINS_HDFS_PATH = "/tmp/elasticsearch/";
     private static final String ES_CONFIG = "es.config";
     private static final String ES_PLUGINS = "es.path.plugins";
-    
-    public ElasticSearchStorage() {
-        this(DEFAULT_ES_CONFIG, DEFAULT_ES_PLUGINS);
-    }
 
-    public ElasticSearchStorage(String esConfig) {
-        this(esConfig, DEFAULT_ES_PLUGINS);
-    }
 
-    public ElasticSearchStorage(String esConfig, String esPlugins) {
+    public ElasticSearchStorage(String esConfig, String esPlugins, String uniqueConfigFileId) {
         this.esConfig  = esConfig;
         this.esPlugins = esPlugins;
+        this.uniqueConfigFileId = uniqueConfigFileId;
     }
 
     @Override
@@ -245,9 +243,8 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
                 if(parentFieldName == null) parentFieldName = "-1";
                 job.getConfiguration().set(ES_PARENT_FIELD_NAME, parentFieldName);
 
-                // get the configure file name  [this is optinal. we suggested to have a unique name to avoid conflict with other running jobs]
-                String configFileName = query.get("configFile");
-                if(configFileName == null) configFileName = "elasticsearch.yml";
+
+                configFileName = "elasticsearch_"+ uniqueConfigFileId + ".yml";
                 job.getConfiguration().set(ES_CONFIG_NAME, configFileName);
 
                 String queryString = query.get("q");
