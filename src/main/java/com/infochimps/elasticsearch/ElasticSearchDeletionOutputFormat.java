@@ -56,12 +56,13 @@ public class ElasticSearchDeletionOutputFormat extends OutputFormat<NullWritable
         private long       lastLogTime    = 0;
 
         // For hadoop configuration
-        private static final String ES_CONFIG_NAME = "elasticsearch.yml";
+        private String ES_CONFIG_NAME = "elasticsearch.yml";
         private static final String ES_PLUGINS_NAME = "plugins";
         private static final String ES_INDEX_NAME = "elasticsearch.index.name";
         private static final String ES_BULK_SIZE = "elasticsearch.bulk.size";
         private static final String ES_ID_FIELD_NAME = "elasticsearch.id.field.name";
         private static final String ES_PARENT_FIELD_NAME = "elasticsearch.parent.field.name";
+        private static final String ES_CONFIG_FILE_NAME = "elasticsearch.config.name";
         private static final String ES_ID_FIELD = "elasticsearch.id.field";
         private static final String ES_OBJECT_TYPE = "elasticsearch.object.type";
         private static final String ES_CONFIG = "es.config";
@@ -101,6 +102,7 @@ public class ElasticSearchDeletionOutputFormat extends OutputFormat<NullWritable
             this.bulkSize = Integer.parseInt(conf.get(ES_BULK_SIZE));
             this.idFieldName = conf.get(ES_ID_FIELD_NAME);
             this.parentFieldName = conf.get(ES_PARENT_FIELD_NAME);
+             this.ES_CONFIG_NAME = conf.get(ES_CONFIG_FILE_NAME);
        //     LOG.info("[ElasticSearchRecordWriter] idFieldName == " + this.idFieldName);
        //     LOG.info("[ElasticSearchRecordWriter] parentFieldName == " + this.parentFieldName);
 

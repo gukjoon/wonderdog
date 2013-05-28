@@ -36,6 +36,8 @@ public class ElasticSearchDeletion extends LoadFunc implements StoreFuncInterfac
     protected ObjectMapper mapper = new ObjectMapper();
     protected String esConfig;
     protected String esPlugins;
+  protected String uniqueConfigFileId;
+  protected String configFileName = "elasticsearch.yml";
 
     // For hadoop configuration
     private static final String ES_INDEX_NAME = "elasticsearch.index.name";
@@ -47,28 +49,24 @@ public class ElasticSearchDeletion extends LoadFunc implements StoreFuncInterfac
     private static final String ES_REQUEST_SIZE = "elasticsearch.request.size";
     private static final String ES_NUM_SPLITS = "elasticsearch.num.input.splits";
     private static final String ES_QUERY_STRING = "elasticsearch.query.string";
+    private static final String ES_CONFIG_NAME = "elasticsearch.config.name";
 
     private static final String COMMA = ",";
     private static final String LOCAL_SCHEME = "file://";
     private static final String DEFAULT_BULK = "1000";
-    private static final String DEFAULT_ES_CONFIG = "/etc/elasticsearch/elasticsearch.yml";
-    private static final String DEFAULT_ES_PLUGINS = "/usr/local/share/elasticsearch/plugins";
-    private static final String ES_CONFIG_HDFS_PATH = "/tmp/elasticsearch/elasticsearch.yml";
-    private static final String ES_PLUGINS_HDFS_PATH = "/tmp/elasticsearch/plugins";
+ //   private static final String DEFAULT_ES_CONFIG = "/etc/elasticsearch/elasticsearch.yml";
+ //   private static final String DEFAULT_ES_PLUGINS = "/usr/local/share/elasticsearch/plugins";
+    private static final String ES_CONFIG_HDFS_FOLDER_PATH = "/tmp/elasticsearch/";
+    private static final String ES_PLUGINS_HDFS_PATH = "/tmp/elasticsearch/";
     private static final String ES_CONFIG = "es.config";
     private static final String ES_PLUGINS = "es.path.plugins";
 
-    public ElasticSearchDeletion() {
-        this(DEFAULT_ES_CONFIG, DEFAULT_ES_PLUGINS);
-    }
 
-    public ElasticSearchDeletion(String esConfig) {
-        this(esConfig, DEFAULT_ES_PLUGINS);
-    }
 
-    public ElasticSearchDeletion(String esConfig, String esPlugins) {
+    public ElasticSearchDeletion(String esConfig, String esPlugins, String uniqueId) {
         this.esConfig  = esConfig;
         this.esPlugins = esPlugins;
+        this.uniqueConfigFileId=uniqueId;
     }
 
     @Override
@@ -227,6 +225,8 @@ public class ElasticSearchDeletion extends LoadFunc implements StoreFuncInterfac
                 if (idFieldName == null) idFieldName = "-1";
                 job.getConfiguration().set(ES_ID_FIELD_NAME, idFieldName);
 
+                configFileName = "elasticsearch_"+ uniqueConfigFileId + ".yml";
+                job.getConfiguration().set(ES_CONFIG_NAME, configFileName);
 
                 String queryString = query.get("q");
                 if (queryString==null) queryString = "*";
@@ -238,7 +238,7 @@ public class ElasticSearchDeletion extends LoadFunc implements StoreFuncInterfac
 
                 // Adds the elasticsearch.yml file (esConfig) and the plugins directory (esPlugins) to the distributed cache
                 try {
-                    Path hdfsConfigPath = new Path(ES_CONFIG_HDFS_PATH);
+                    Path hdfsConfigPath = new Path(ES_CONFIG_HDFS_FOLDER_PATH+configFileName);
                     Path hdfsPluginsPath = new Path(ES_PLUGINS_HDFS_PATH);
                     
                     HadoopUtils.uploadLocalFileIfChanged(new Path(LOCAL_SCHEME+esConfig), hdfsConfigPath, job.getConfiguration());
