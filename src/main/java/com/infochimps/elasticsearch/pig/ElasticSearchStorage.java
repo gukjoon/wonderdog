@@ -182,8 +182,10 @@ public class ElasticSearchStorage extends LoadFunc implements StoreFuncInterface
                     HashMap<String,Object> data = mapper.readValue(jsonData, HashMap.class);
                     record = (MapWritable)toWritable(data);
                 } catch (JsonParseException e) {
+                    System.out.println("Json Parse Problem : \n" + jsonData);
                     e.printStackTrace();
                 } catch (JsonMappingException e) {
+                    System.out.println("Json MappingException Problem : \n" + jsonData);
                     e.printStackTrace();
                 }
             }

@@ -113,12 +113,6 @@ public class ElasticSearchDeletionOutputFormat extends OutputFormat<NullWritable
                 LOG.info("Using field:["+idFieldName+"] for document ids");
             }
 
-            if(parentFieldName.equals(NO_ID_FIELD)){
-              LOG.info("This is not a child index");
-            } else {
-              LOG.info("Using field: ["+ parentFieldName +"] for parent ids");
-            }
-
             this.objType    = conf.get(ES_OBJECT_TYPE);
 
             //
@@ -178,25 +172,8 @@ public class ElasticSearchDeletionOutputFormat extends OutputFormat<NullWritable
                     Text mapKey = new Text(idFieldName);
                     String record_id = fields.get(mapKey).toString();
 
-                    if(parentFieldName.equals(NO_ID_FIELD))
-                    {
-                       // no parent id setting
-                  //     LOG.info("[write] record_id ==" + record_id);
+                    currentRequest.add(Requests.deleteRequest(indexName).id(record_id).type(objType));
 
-
-                       currentRequest.add(Requests.deleteRequest(indexName).id(record_id).type(objType));
-                    }
-                    else
-                    {  // there is parent setting
-                       mapKey = new Text(parentFieldName);
-                       String parent_id = fields.get(mapKey).toString();
-                    //  LOG.info("[write] record_id ==" + record_id);
-                    //  LOG.info("[write] parent_id ==" + parent_id);
-                      DeleteRequest dr = Requests.deleteRequest(indexName).id(record_id).type(objType);
-                    //  LOG.info("[write] json body == \n" + ir.toString() + "\n its parent id is ==" + ir.parent());
-                      currentRequest.add(dr);
-
-                    }
                 } catch (Exception e) {
                     LOG.warn("Encountered malformed record");
                 }
